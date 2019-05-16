@@ -145,7 +145,7 @@ class List {
             let current =this.head;
 
             let i =0;
-            while(current.next !==null) {
+            while(current !==null) {
                 console.log(`value for index ${i} is:  ${current.val}`);
                 current = current.next;
                 i++;
@@ -157,9 +157,6 @@ class List {
         }
     return idex;
     }
-
-
-
 
     getLength(){
         let current =this.head;
@@ -201,21 +198,86 @@ class List {
         return current.val;
     }
 
+    kLastNode2(k){
+        //Given k, return the value that is ‘k’ nodes from the list’s end. If given (list,1) , return the list’s last value. If given (list,4) , return the value at the node that has exactly 3 nodes following it.
+        //k is a value that is that far back from the end of the list
+        //if list length is 4, and k is 1, then we want the 4th element
+        //If given (list,1) , return the list’s last value. If given (list,4) , return the value at the node that has exactly 3 nodes following it.
+        //k max is list length...if k is list length, then return the value of first node
+        if (k<=0){
+            return null;
+        }
+        let current = this.head;
+        while (current && (k>0)){ //stop when at the last, or 
+            current=current.next
+            k--
+        }
+        if (k>0){ //this happens when we exit while because end of list, but k still has value, thath means k was bigger than the list, so get out
+            return null;
+        }
+        let follower=this.head
+        while (current){
+            current=current.next;
+            follower=follower.next;
+        }
+        return follower.val;
+    } //end of class
+
+    //SList: Is Palindrome
+
+    // Return whether a list is a palindrome. String palindromes read the same front-to-back and back-to-front. Here, compare node values . N.B.: to be accurate in JavaScript, use === instead of == , since 1 == true == [1] == "1" .
+
+    // 1) Traverse the given list from head to tail and push every visited node to stack.
+    // 2) Traverse the list again. For every visited node, pop a node from stack and compare data of popped node with currently visited node.
+    // 3) If all nodes matched, then return true, else false
+    
+
+    isPalindrome(){  
+        let testArr = [];
+        let current = this.head;
+        //Go through the list, and fill up an array with all of the values of each node.
+        //I.e. testArr at index 0 would be the value of this.head
+        while (current){
+            testArr.push(current.val);
+            current = current.next;
+        }
+        current = this.head;
+        while(current){
+            if ((testArr.pop()!=current.val)){
+                return false;
+            }
+            current = current.next;
+        }
+        return true;
+    }
+
+
+
 }
 
 const list = new List();
 console.log(list);
 console.log(`this is objname.instance variable or field:  ${list.head}`);
-list.pushFront("Kent");
-list.pushFront("Nina");
-list.pushFront("OO");
-list.pushFront("Ted");
-//list.outputAll();
+// list.pushFront("Kent");
+// list.pushFront("Nina");
+// list.pushFront("OO");
+// list.pushFront("Ted");
+// list.pushFront("Larry");
+
+list.pushFront("R");
+list.pushFront("A");
+list.pushFront("D");
+list.pushFront("A");
+list.pushFront("R");
+
+list.outputAll();  //Larry, Ted, OO, Nina, Kent
 
 //result = list.getByIndex(4);
 //console.log(`result is ${result}`);
 
-console.log(list.kLastNode(-1));
+console.log(list.kLastNode2(5));
+
+console.log(list.isPalindrome());
 
 
 // const list = new List();
