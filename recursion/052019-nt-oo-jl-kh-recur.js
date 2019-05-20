@@ -13,7 +13,7 @@ function printArray(arr, idx =0) {
     //guard statement...while not at end of array
     //recursion takes place of any while
     if (idx == arrayLength) {
-        return
+        return "something back"
     }
     console.log("array value is ", arr[idx], "at idx of", idx);  //first time through will be zero..after that will be new passed in parameter
     idx++ //go to the next element..."forward progress"
