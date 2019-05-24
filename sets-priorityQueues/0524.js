@@ -106,7 +106,7 @@ function unionSortedArraysDeduped(arr1,arr2){
             newArr.push(arr2[pos2]);
             pos2++; 
         }
-        else if(arr2[pos2] > arr1[pos1]){
+        else if(arr2[pos2] > arr1[pos1] || pos2 === arr2.length){
             console.log(`line 108 pos1 ${pos1} pos2 ${pos2}`);
             console.log(`about to push value ${arr1[pos1]}`);
             newArr.push(arr1[pos1]);
