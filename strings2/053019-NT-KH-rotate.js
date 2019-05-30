@@ -9,12 +9,16 @@ let testString = "Boris Godunov"
 
 function rotateString(myString, num) {
     let newNum = num % myString.length
+    while(newNum < 0) {
+        newNum += myString.length;
+    }
+    console.log("newNum is ",  newNum)
     for (let i = 1; i <= newNum; i++) {
-        let lastChar = myString[myString.length - 1];
+        const lastChar = myString[myString.length - 1];
         myString = lastChar + myString.substring(0, myString.length - 1);
     }
     return myString
 }
 
-result = rotateString(testString, 26);
+result = rotateString(testString, -26);
 console.log(result);
