@@ -106,10 +106,13 @@ class HashMap{
         this.capacity = newSize;
         for( let i =0; i< oldTable.length;i++){
             const entry = oldTable[i] || [];
-            for(let j =0; j< entry.length ;j++){
-                console.log('entry at j ',entry[j]);
-                this.add(entry[j][0], entry[j][1]);
+            for(const [key,value] of entry ){
+                this.add(key, value);
             }
+            // for(let j =0; j< entry.length ;j++){
+            //     console.log('entry at j ',entry[j]);
+            //     this.add(entry[j][0], entry[j][1]);
+            // }
         }
         // console.log('this is our table',this.table);
         return this.table;
